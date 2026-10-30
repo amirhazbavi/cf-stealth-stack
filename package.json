@@ -1,0 +1,21 @@
+{
+  "name": "cf-stealth-stack",
+  "version": "1.0.0",
+  "description": "Serverless VLESS-over-WS + DoH stack for Cloudflare Pages/Workers (JP/RU regions)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy:vless": "wrangler deploy --config wrangler.toml --env vless",
+    "deploy:doh":   "wrangler deploy --config wrangler.toml --env doh",
+    "dev:vless":    "wrangler dev --config wrangler.toml --env vless",
+    "dev:doh":      "wrangler dev --config wrangler.toml --env doh",
+    "gen:uuid":     "bash scripts/gen-uuid.sh",
+    "find:ip":      "bash scripts/find-best-ip.sh"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
