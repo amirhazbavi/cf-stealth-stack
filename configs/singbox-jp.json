@@ -1,0 +1,35 @@
+{
+  "log": { "level": "info" },
+  "dns": {
+    "servers": [
+      {
+        "tag": "doh",
+        "address": "https://cf-doh.YOUR-SUBDOMAIN.workers.dev/dns-query",
+        "detour": "proxy"
+      }
+    ]
+  },
+  "inbounds": [
+    { "type": "mixed", "listen": "127.0.0.1", "listen_port": 2080 }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "YOUR-VLESS-DOMAIN.pages.dev",
+      "server_port": 443,
+      "uuid": "YOUR-UUID-HERE",
+      "tls": {
+        "enabled": true,
+        "server_name": "YOUR-VLESS-DOMAIN.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": { "Host": "YOUR-VLESS-DOMAIN.pages.dev" }
+      }
+    },
+    { "type": "direct", "tag": "direct" }
+  ],
+  "route": { "final": "proxy" }
+}
