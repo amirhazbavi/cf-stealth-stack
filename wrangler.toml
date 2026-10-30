@@ -1,0 +1,24 @@
+name = "cf-stealth-stack"
+compatibility_date = "2024-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.vless]
+name = "cf-vless-ws"
+main = "src/vless-worker.js"
+workers_dev = true
+
+[env.vless.placement]
+mode = "smart"
+
+[env.vless.vars]
+UUID = "REPLACE-WITH-YOUR-UUID"
+PROXYIP = "proxyip.cmliu.eu.org"
+REGION = "JP"
+
+[env.doh]
+name = "cf-doh"
+main = "src/doh-worker.js"
+workers_dev = true
+
+[env.doh.vars]
+UPSTREAMS = "https://cloudflare-dns.com/dns-query,https://dns.google/dns-query,https://dns.quad9.net/dns-query"
